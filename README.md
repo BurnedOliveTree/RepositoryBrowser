@@ -17,4 +17,4 @@ To launch it, you need to execute following command (in directory where you clon
 ```
 uvicorn main:app
 ```
-And then, please open your preffered browser and go the link that was shown in terminal (by default it should be http://127.0.0.1:8000)
+And then, please open your preferred browser and go the link that was shown in terminal (by default it should be http://127.0.0.1:8000)
