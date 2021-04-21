@@ -18,6 +18,9 @@
 		<div class="outer" id="content_wrap">
 			<section class="inner">
 				<p> {{ msg }} </p>
+				{% for repo, stars in repos %}
+					  <li> {{ repo }} {{ stars }} </li>
+				{% endfor %}
 			</section>
 		</div>
 		<!-- FOOTER -->

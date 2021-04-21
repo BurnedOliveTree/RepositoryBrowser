@@ -21,4 +21,4 @@ def repository(request: Request, username: str=None):
     if github_response.status_code == 404:
         return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a valid GitHub username'}, status_code=404)
     else:
-        return templates.TemplateResponse('index.html', {'request': request, 'msg': github_response.json()}, status_code=200)
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': username, 'repos': [[repo['name'], repo['stargazers_count']] for repo in github_response.json()]}, status_code=200)
