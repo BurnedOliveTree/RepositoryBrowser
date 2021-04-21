@@ -1,0 +1,12 @@
+body {
+	color: #F0F0F0;
+	background-color: #202020;
+}
+#header_wrap { background-color: #101010; }
+#content_wrap { background-color: #202020; }
+#footer_wrap {
+	color: #909090;
+	background-color: #101010;
+}
+a { color: #F0F0F0; }
+.rounded { border-color: #101010; }

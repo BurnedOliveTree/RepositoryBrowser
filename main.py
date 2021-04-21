@@ -1,21 +1,24 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import requests
 
 app = FastAPI()
+app.mount("/styles", StaticFiles(directory="styles"), name="styles")
 
-@app.get('/', status_code=200)
-def root():
-    return {'message': 'Hello world'}
+templates = Jinja2Templates(directory=".")
 
-@app.get('/repository')
-def repository(response: Response, username: str=None):
+@app.get('/', status_code=200, response_class=HTMLResponse)
+def root(request: Request):
+    return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Placeholder'})
+
+@app.get('/repository', response_class=HTMLResponse)
+def repository(request: Request, username: str=None):
     if username == None:
-        response.status_code = 400
-        return 'Please enter a GitHub username'
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a GitHub username'}, status_code=400)
     github_response = requests.get(f'https://api.github.com/users/{username}/repos')
     if github_response.status_code == 404:
-        response.status_code = 404
-        return 'Please enter a valid GitHub username'
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a valid GitHub username'}, status_code=404)
     else:
-        response.status_code = 200
-        return github_response.json()
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': github_response.json()}, status_code=200)
