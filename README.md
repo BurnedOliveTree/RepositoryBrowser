@@ -1,6 +1,6 @@
 # Repository Browser
 
-A small and simple Python web application that let's you browse repositories of every user.
+A small and simple Python web application that let's you browse repositories of every user on GitHub.
 
 App requires Python installed on your machine along with some libraries with it.
 If you do not have Python on your system, please follow these official [instructions](https://www.python.org/downloads/).
