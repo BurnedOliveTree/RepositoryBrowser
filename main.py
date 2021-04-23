@@ -9,14 +9,10 @@ app.mount("/styles", StaticFiles(directory="styles"), name="styles")
 
 templates = Jinja2Templates(directory=".")
 
-@app.get('/', status_code=200, response_class=HTMLResponse)
-def root(request: Request):
-    return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Placeholder'})
-
-@app.get('/repository', response_class=HTMLResponse)
-def repository(request: Request, username: str=None):
-    if username == None:
-        return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a GitHub username'}, status_code=400)
+@app.get('/', response_class=HTMLResponse)
+def root(request: Request, username: str=None):
+    if username == None or username == '':
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': ''}, status_code=400)
     github_response = requests.get(f'https://api.github.com/users/{username}/repos')
     if github_response.status_code == 404:
         return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a valid GitHub username'}, status_code=404)

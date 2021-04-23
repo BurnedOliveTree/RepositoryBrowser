@@ -17,6 +17,9 @@
 		<!-- CONTENT -->
 		<div class="outer" id="content_wrap">
 			<section class="inner">
+				<form>
+					<input type="text" id="username" name="username" placeholder="Please enter a GitHub username">
+				</form>
 				<p> {{ msg }} </p>
 				{% for repo, stars in repos %}
 					  <li> {{ repo }} {{ stars }} </li>
