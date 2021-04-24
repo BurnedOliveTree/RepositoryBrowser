@@ -3,13 +3,18 @@ body {
 	  font-family: Helvetica, sans-serif;
 	  line-height: 1.5;
 	  margin: 0px 0 0 0;
+	  color: var(--text);
+	  background-color: var(--background);
 }
 
 div { margin: 0px 0 0 0; }
 
 p { display: block; }
 
-a { text-decoration: none; }
+a {
+	text-decoration: none;
+	color: var(--text);
+}
 
 h1 {
 	font-size: 1.8em;
@@ -28,20 +33,29 @@ input {
 	padding: 2%;
 	border: 2px solid;
 	border-radius: 8px;
+    color: var(--text);
+    background-color: var(--light_background);
+    border-color: var(--text);
 }
 
 .outer { width: 100%; }
 
 .inner {
+	align-items: center;
     max-width: 640px;
     margin: auto;
     padding: 10px;
 }
 
+#header_wrap { background-color: var(--border); }
+
 #content_wrap {
 	min-height: calc(100vh - 65px - 102px);
+	background-color: var(--background);
 }
 
 #footer_wrap {
 	font-size: 0.8em;
+	color: var(--light_text);
+	background-color: var(--border);
 }
