@@ -16,6 +16,10 @@ a {
 	color: var(--text);
 }
 
+li {
+	list-style-type: none;
+}
+
 h1 {
 	font-size: 1.8em;
 	text-align: center;
@@ -38,10 +42,26 @@ input {
     border-color: var(--text);
 }
 
+.icon {
+	position: absolute;
+	top: 11px;
+	width: 64px;
+	border-radius: 8px;
+	margin: 10px;
+}
+
+.icon.left {
+	left: 11px;
+}
+
+.icon.right {
+	right: 11px;
+}
+
 .outer { width: 100%; }
 
 .inner {
-	align-items: center;
+	text-align: center;
     max-width: 640px;
     margin: auto;
     padding: 10px;

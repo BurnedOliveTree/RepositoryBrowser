@@ -12,6 +12,8 @@
 		<div class="outer" id="header_wrap">
 			<header class="inner">
 				<h1>Repository Browser</h1>
+				<img class="icon left" src="https://github.githubassets.com/pinned-octocat.svg" style="filter: brightness(0%) saturate(100%) invert(93.75%)"/>
+				<img class="icon right" src="https://avatars.githubusercontent.com/u/56540456?v=4"/>
 			</header>
 		</div>
 		<!-- CONTENT -->
@@ -23,7 +25,7 @@
 				<p>
 					{{ err }}
 					{% if stars %}
-						(Total amount of stars: {{ stars }})
+						Total amount of stars: {{ stars }}
 					{% endif %}
 				</p>
 				{% for repo, stars in repos %}
