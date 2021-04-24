@@ -35,7 +35,6 @@ class ApiResponse():
                         stars += repo['stargazers_count']
                     page += 1
                     github_response = requests.get(f'https://api.github.com/users/{username}/repos?per_page=100&page={page}', headers=header)
-                print(page)
                 return {'name': username, 'stars': stars, 'repos': repos}, 200
         
         self.json, self.status_code = get_data(username)
