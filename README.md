@@ -6,6 +6,8 @@ A small and simple Python web application that let's you browse repositories of 
 
 There are 2 ways to launch this application: using Docker or by installing needed libraries directly on your computer.
 
+It is also recommended to add a personal access token, which will lift the limit from 60 requests per hour to 1500, but it's not required.
+
 ### Docker
 
 In order to follow these steps you need [Docker](https://www.docker.com) installed on your computer.
@@ -41,6 +43,14 @@ To launch it, you need to execute following command (in directory where you clon
 uvicorn main:app
 ```
 And then, please open your preferred browser and go the link that was shown in terminal (by default it should be http://127.0.0.1:8000)
+
+### Personal Access Token
+
+If you want to be able to make more requests to GitHub per hour, you need to go [GitHub settings](https://github.com/settings/tokens), create a new token (no need to select any scope), create a new file 'token.txt' in the same directory as this cloned repository, and then paste the token into this file.
+
+## Notes
+
+This application is set up to redirect user to a website by default, but it is also possible to get a *json* file from it. In order to access it, you need to go to http://127.0.0.1:8000/json?username=name, where *name* is a GitHub's user username. 
 
 ## Possible Enhancements
 
