@@ -3,10 +3,17 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import requests
+import os.path
 
 app = FastAPI()
 app.mount("/styles", StaticFiles(directory="styles"), name="styles")
 templates = Jinja2Templates(directory=".")
+
+
+header = {}
+if os.path.isfile('token.txt'):
+    with open('token.txt') as file:
+        header['Authorization'] = 'token '+file.read()
 
 
 class ApiResponse():
@@ -14,15 +21,20 @@ class ApiResponse():
         def get_data(username: str) -> (dict, int):
             if username == None or username == '':
                 return {}, 400
-            github_response = requests.get(f'https://api.github.com/users/{username}/repos')
+            page = 1
+            github_response = requests.get(f'https://api.github.com/users/{username}/repos?per_page=100&page={page}', headers=header)
             if github_response.status_code == 404:
                 return {'name': username, 'err': 'Please enter a valid GitHub username'}, 404
             else:
                 repos = []
                 stars = 0
-                for repo in github_response.json():
-                    repos.append([repo['name'], repo['stargazers_count']])
-                    stars += repo['stargazers_count']
+                while(len(github_response.json()) > 0):
+                    for repo in github_response.json():
+                        repos.append([repo['name'], repo['stargazers_count']])
+                        stars += repo['stargazers_count']
+                    page += 1
+                    github_response = requests.get(f'https://api.github.com/users/{username}/repos?per_page=100&page={page}', headers=header)
+                print(page)
                 return {'name': username, 'stars': stars, 'repos': repos}, 200
         
         self.json, self.status_code = get_data(username)
