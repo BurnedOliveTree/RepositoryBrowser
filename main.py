@@ -2,6 +2,7 @@ from fastapi import FastAPI, Response, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.exceptions import HTTPException as StarletteHTTPException
 import requests
 import os.path
 
@@ -54,3 +55,7 @@ def site(request: Request, username: str=None):
 def api(username: str=None):
     response = ApiResponse(username)
     return JSONResponse(content=response.json, status_code=response.status_code)
+
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request: Request, exception):
+    return RedirectResponse(url="/html")
