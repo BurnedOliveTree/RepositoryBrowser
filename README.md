@@ -2,9 +2,11 @@
 
 A small and simple Python web application that let's you browse repositories of every user on GitHub.
 
+## Setup
+
 There are 2 ways to launch this application: using Docker or by installing needed libraries directly on your computer.
 
-## Docker
+### Docker
 
 In order to follow these steps you need [Docker](https://www.docker.com) installed on your computer.
 
@@ -21,7 +23,7 @@ docker run -p 8000:8000 burnedolivetree/repositorybrowser:1.0
 
 You will find your launched application at http://127.0.0.1:8000
 
-## Direct
+### Direct
 
 To follow these steps, app requires Python installed on your machine along with some libraries with it.
 If you do not have Python on your system, please install it from the official [site](https://www.python.org/downloads/).
@@ -39,3 +41,9 @@ To launch it, you need to execute following command (in directory where you clon
 uvicorn main:app
 ```
 And then, please open your preferred browser and go the link that was shown in terminal (by default it should be http://127.0.0.1:8000)
+
+## Possible Enhancements
+
+* Multiple website themes.
+    * Themes would be stored in small CSS files like *dark.css*.
+    * Switch / menu would have to be added to *index.html* to be able to select them.
