@@ -18,10 +18,10 @@
 		<div class="outer" id="content_wrap">
 			<section class="inner">
 				<form>
-					<input type="text" id="username" name="username" placeholder="Please enter a GitHub username">
+					<input type="text" id="username" name="username" placeholder="Please enter a GitHub username" value={{name}}>
 				</form>
 				<p>
-					{{ msg }}
+					{{ err }}
 					{% if stars %}
 						(Total amount of stars: {{ stars }})
 					{% endif %}
