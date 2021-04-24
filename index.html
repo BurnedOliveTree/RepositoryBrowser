@@ -20,9 +20,14 @@
 				<form>
 					<input type="text" id="username" name="username" placeholder="Please enter a GitHub username">
 				</form>
-				<p> {{ msg }} </p>
+				<p>
+					{{ msg }}
+					{% if stars %}
+						(Total amount of stars: {{ stars }})
+					{% endif %}
+				</p>
 				{% for repo, stars in repos %}
-					  <li> {{ repo }} {{ stars }} </li>
+					  <li> {{ repo }} ({{ stars }}) </li>
 				{% endfor %}
 			</section>
 		</div>

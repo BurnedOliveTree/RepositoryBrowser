@@ -17,4 +17,9 @@ def root(request: Request, username: str=None):
     if github_response.status_code == 404:
         return templates.TemplateResponse('index.html', {'request': request, 'msg': 'Please enter a valid GitHub username'}, status_code=404)
     else:
-        return templates.TemplateResponse('index.html', {'request': request, 'msg': username, 'repos': [[repo['name'], repo['stargazers_count']] for repo in github_response.json()]}, status_code=200)
+        repos = []
+        stars = 0
+        for repo in github_response.json():
+            repos.append([repo['name'], repo['stargazers_count']])
+            stars += repo['stargazers_count']
+        return templates.TemplateResponse('index.html', {'request': request, 'msg': username, 'stars': stars, 'repos': repos}, status_code=200)
