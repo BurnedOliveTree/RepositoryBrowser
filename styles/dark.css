@@ -12,7 +12,7 @@ body {
 #header_wrap { background-color: var(--border); }
 #content_wrap { background-color: var(--background); }
 #footer_wrap {
-	color: var(--light-text);
+	color: var(--light_text);
 	background-color: var(--border);
 }
 a { color: var(--text); }
