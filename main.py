@@ -35,7 +35,6 @@ class ApiResponse():
                         stars += repo['stargazers_count']
                     page += 1
                     github_response = requests.get(f'https://api.github.com/users/{username}/repos?per_page=100&page={page}', headers=header)
-                print(page)
                 return {'name': username, 'stars': stars, 'repos': repos}, 200
         
         self.json, self.status_code = get_data(username)
@@ -57,5 +56,5 @@ def api(username: str=None):
     return JSONResponse(content=response.json, status_code=response.status_code)
 
 @app.exception_handler(StarletteHTTPException)
-async def custom_http_exception_handler(request: Request, exception):
+def exception_handler(request: Request, exception):
     return RedirectResponse(url="/html")
