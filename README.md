@@ -57,3 +57,4 @@ This application is set up to redirect user to a website by default, but it is a
 * Multiple website themes.
     * Themes would be stored in small CSS files like *dark.css*.
     * Switch / menu would have to be added to *index.html* to be able to select them.
+* Extend functionality to work with GitLab and BitBucket
