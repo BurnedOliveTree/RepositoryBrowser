@@ -6,7 +6,11 @@ client = TestClient(app)
 
 def test_root_no_args():
     response = client.get('/')
-    assert response.status_code == 400
+    assert response.status_code == 200
+
+def test_root_empty_args():
+    response = client.get('/?username=')
+    assert response.status_code == 204
 
 def test_root_invalid_args():
     response = client.get('/?username=BurnedOlieTree')
