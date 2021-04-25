@@ -21,3 +21,13 @@ def test_root_correct_args():
     response = client.get('/?username=BurnedOliveTree')
     assert response.status_code == 200
     assert '<li>' in response.text
+
+def test_json():
+    response = client.get('/json?username=BurnedOliveTree')
+    assert response.status_code == 200
+    assert 'BurnedOliveTree' == response.json()['name']
+    assert int == type(response.json()['stars'])
+
+def test_site_not_found():
+    response = client.get('/random_url_that_does_not_exist')
+    assert response.url == 'http://testserver/html'
