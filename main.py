@@ -8,6 +8,7 @@ import os.path
 
 app = FastAPI()
 app.mount("/styles", StaticFiles(directory="styles"), name="styles")
+app.mount("/resources", StaticFiles(directory="resources"), name="resources")
 templates = Jinja2Templates(directory=".")
 
 
@@ -20,8 +21,10 @@ if os.path.isfile('token.txt'):
 class ApiResponse():
     def __init__(self, username: str):
         def get_data(username: str) -> (dict, int):
-            if username == None or username == '':
-                return {}, 400
+            if username == None:
+                return {}, 200
+            if username == '':
+                return {}, 204
             page = 1
             github_response = requests.get(f'https://api.github.com/users/{username}/repos?per_page=100&page={page}', headers=header)
             if github_response.status_code == 404:
